@@ -14,6 +14,4 @@ class Excel2JsonTool(Tool):
         except Exception as e:
             raise Exception(f"Error reading Excel file: {str(e)}")
 
-        yield self.create_json_message({
-            "result": df.to_dict("records")
-        })
+        yield self.create_text_message(df.to_json(orient="records", force_ascii=False))
