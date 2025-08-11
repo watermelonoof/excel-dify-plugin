@@ -10,8 +10,14 @@ from io import StringIO, BytesIO
 class Json2ExcelTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         json_str = tool_parameters['json_str']
+        convert_numbers = tool_parameters.get('convert_numbers', True)
         try:
-            df = pd.read_json(StringIO(json_str))
+            if convert_numbers:
+                # Convert JSON string to DataFrame with number conversion
+                df = pd.read_json(StringIO(json_str))
+            else:
+                # Convert JSON string to DataFrame without number conversion
+                df = pd.read_json(StringIO(json_str), dtype=str)
         except Exception as e:
             raise Exception(f"Error reading JSON string: {str(e)}")
 

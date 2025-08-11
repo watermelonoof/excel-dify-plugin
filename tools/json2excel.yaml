@@ -21,6 +21,17 @@ parameters:
       zh_Hans: 要转换的JSON字符串。
     llm_description: The JSON string to convert.
     form: llm
+  - name: convert_numbers
+    type: boolean
+    required: false
+    label:
+      en_US: Convert Numbers
+      zh_Hans: 转换数字
+    human_description:
+      en_US: Whether to convert numbers in the JSON string to their Excel equivalents.
+      zh_Hans: 是否将JSON字符串中的数字转换为Excel等效值。
+    llm_description: Whether to convert numbers in the JSON string to their Excel equivalents.
+    form: llm
   - name: filename
     type: string
     required: false
